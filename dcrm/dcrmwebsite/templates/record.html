@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% if customer_records %}
+<h1>Record ...</h1>
+
+<table class="table table-striped">
+  <tbody class="table-group-divider">
+    <tr>
+      <th scope="row" >{{customer_records.id}}</th>
+      <td>{{customer_records.first_name}}</td>
+      <td>{{customer_records.last_name}}</td>
+      <td>{{customer_records.email}}</td>
+      <td>{{customer_records.created_at}}</td>
+    </tr>
+  </tbody>
+  {% endif %}
+</table>
+<a class="btn btn-primary" href="{% url 'home' %}">Back</a>
+<a class="btn btn-warning" href="{% url 'update_record' pk=customer_records.id %}">Update</a>
+<a class="btn btn-danger" href="{% url 'delete_record' pk=customer_records.id %}">Delete</a>
+{% endblock %}

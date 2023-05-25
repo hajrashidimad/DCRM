@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!-- <div class="col-md-6 offset-md-3"> -->
+  {% if user.is_authenticated %}
+  <h1>Records ...</h1>
+  {% if records %}
+  <table class="table table-striped">
+    <thead>
+      <tr class="table-active">
+        <th scope="col">#</th>
+        <th scope="col">First Name</th>
+        <th scope="col">Last Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Created At</th>
+      </tr>
+    </thead>
+    <tbody class="table-group-divider">
+    {% for record in records %}
+      <tr>
+        <th scope="row" href="{% url 'record' pk=record.id %}" ><a href="record/{{ record.id }}">{{record.id}}</th>
+        <td>{{record.first_name}}</td>
+        <td>{{record.last_name}}</td>
+        <td>{{record.email}}</td>
+        <td>{{record.created_at}}</td>
+      </tr>
+    </tbody>
+    {% endfor %}
+  </table>
+  
+  {% endif %}
+  
+  
+  
+  {% else %}
+  <h1>Login</h1>
+  <br/>
+  <form method="POST" action="{% url 'home' %}">
+    {% csrf_token %}
+    <div class="mb-3">
+      <input type="text" class="form-control" name="username" placeholder="User name" required>
+    </div>
+
+    <div class="mb-3">
+      <input type="password" class="form-control" name="password"  placeholder="Password" required>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Login</button>
+  </form>
+</div>
+{% endif %}
+<!-- </div> -->
+<a class="btn btn-primary" href="{% url 'add_record' %}">Add record</a>
+{% endblock %}

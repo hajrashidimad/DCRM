@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Update record</h1>
+<form method="POST">
+  {% csrf_token %}
+  {{form.as_p}}
+
+  <br/>
+  <!-- <button type="submit" class="btn btn-secondary" href="{% url 'home' %}">Update records</button> -->
+  <button type="submit" class="btn btn-secondary" >Update records</button>
+</form>
+
+<a class="btn btn-primary" href="{% url 'home' %}">Back</a>
+
+{% endblock %}
